@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pi · Context Trace</title>
+<link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/"><span class="brand-icon">π</span><strong>Context Trace</strong><span class="version">PI / 0.1</span></a>
+  <div class="top-actions"><span id="connection" class="status">连接中</span><button type="button" id="theme" title="切换浅色 / 深色" aria-label="切换主题">◐</button></div>
+</header>
+<div id="error" class="error-banner" role="alert" hidden></div>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-head"><label class="eyebrow" for="sessions">会话</label><select id="sessions" aria-label="选择会话"><option>暂无会话</option></select><input id="request-filter" type="search" placeholder="筛选请求、模型…" aria-label="筛选请求"></div>
+  <div class="list-label"><span id="request-count">请求记录</span><button type="button" id="follow" class="small active" aria-pressed="true">跟随最新</button></div>
+  <nav id="requests" aria-label="请求列表"></nav>
+  <button type="button" id="load-more" class="load-more" hidden>加载更早请求</button>
+  <footer class="sidebar-foot"><span class="local-dot"></span>仅保存在这台电脑<span class="key-hint">↑ ↓ 切换请求</span></footer>
+</aside>
+<main id="main">
+  <section id="empty" class="empty-state"><div class="empty-icon">⌁</div><h1>看见 Agent 的上下文</h1><p>在 Pi 中输入 <code>/trace on</code>，再发起一轮对话。<br>每次模型请求会作为独立快照出现在这里。</p><div class="empty-steps"><span>01 开启监听</span><span>02 发送消息</span><span>03 查看上下文</span></div></section>
+  <div id="detail" hidden>
+    <div class="request-header"><div><div class="eyebrow" id="request-kicker"></div><h1 id="request-title"></h1><p id="request-meta" class="meta"></p></div><div class="header-actions"><button type="button" id="copy">复制 JSON</button><button type="button" id="download">导出 JSON ↓</button></div></div>
+    <div id="stats" class="stats"></div>
+    <div class="context-map"><div class="map-label"><span>上下文组成</span><span id="map-total"></span></div><div id="map-bar" class="map-bar"></div><div id="map-legend" class="map-legend"></div></div>
+    <div id="toolbar" class="toolbar"><div id="tabs" class="tabs" role="tablist" aria-label="请求内容与查看方式"></div><input id="search" type="search" placeholder="搜索各分类完整内容…" aria-label="搜索各分类完整内容"></div>
+    <div id="content-controls" class="content-controls"><span id="view-note"></span><div><button type="button" id="expand-all" class="text-button">全部展开</button><button type="button" id="collapse-all" class="text-button">全部收起</button></div></div>
+    <section id="content" role="tabpanel" tabindex="0" aria-live="polite"></section>
+    <footer class="detail-foot">快照来自 before_provider_request · 保留捕获时的完整 payload</footer>
+  </div>
+</main>
+</div>
+</body>
+</html>
