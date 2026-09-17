@@ -1,6 +1,6 @@
 {
   "name": "pi-context-trace",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Local provider context snapshots and a trace viewer for Pi",
   "type": "module",
   "keywords": [
